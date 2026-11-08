@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flappy Kiro</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="topbar" id="core-ui">
+      <h1>Flappy Kiro</h1>
+      <form id="seed-form" class="seed-form" autocomplete="off">
+        <label for="seed-input">Seed</label>
+        <input id="seed-input" maxlength="64" spellcheck="false" />
+        <button type="submit" id="seed-set">Set</button>
+        <button type="button" id="seed-random" title="New random seed">Random</button>
+        <button type="button" id="seed-copy" title="Copy a link with this seed">Copy link</button>
+        <span id="seed-message" class="hint" role="status"></span>
+      </form>
+      <div class="toolbar">
+        <button type="button" id="btn-pause">Pause</button>
+        <button type="button" id="btn-sound" aria-pressed="true">Sound: on</button>
+        <button type="button" id="btn-bot" aria-pressed="false" title="A bot presses at the ideal moments so you can watch any skin play">Test bot: off</button>
+        <button type="button" id="btn-selftest">Self-test</button>
+        <button type="button" id="btn-restore" class="danger">Restore default</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="stage-column">
+        <div class="frame" id="frame">
+          <div id="mount"></div>
+          <div id="input-overlay" aria-label="Game area: press Space, click or tap to flap"></div>
+        </div>
+        <div class="statusbar">
+          <span id="status-line" role="status"></span>
+          <span class="hint">Space / click / tap = press &middot; P = pause</span>
+        </div>
+        <div id="preview-bar" class="preview-bar" hidden>
+          <span id="preview-text"></span>
+          <button type="button" id="preview-keep">Keep</button>
+          <button type="button" id="preview-discard" class="danger">Discard</button>
+        </div>
+      </section>
+
+      <aside class="side" id="side">
+        <section class="panel" aria-labelledby="chat-title">
+          <h2 id="chat-title">Side chat</h2>
+          <p class="hint">Ask an AI to restyle the game. It can change how the game looks and sounds, never how it plays. Your key stays in this browser and goes only to the provider you pick.</p>
+          <div class="row">
+            <select id="provider-select" aria-label="AI provider"></select>
+            <input id="model-input" placeholder="model" aria-label="Model" spellcheck="false" />
+          </div>
+          <form class="row" id="key-row" autocomplete="off" onsubmit="return false">
+            <input id="key-input" type="password" placeholder="Your API key" aria-label="API key" autocomplete="off" spellcheck="false" />
+            <label class="inline"><input type="checkbox" id="key-remember" /> remember</label>
+          </form>
+          <div id="chat-log" class="chat-log" aria-live="polite"></div>
+          <div class="chips" id="chips"></div>
+          <form id="chat-form" autocomplete="off">
+            <textarea id="chat-input" rows="3" placeholder="e.g. Make it a Guitar Hero style game"></textarea>
+            <div class="row">
+              <button type="submit" id="chat-send">Generate</button>
+              <button type="button" id="chat-cancel" hidden>Cancel</button>
+              <span id="chat-progress" class="hint"></span>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="versions-title">
+          <h2 id="versions-title">Versions</h2>
+          <ul id="version-list" class="version-list"></ul>
+          <div class="row">
+            <button type="button" id="version-import">Import</button>
+            <input type="file" id="import-file" accept="application/json,.json" hidden />
+            <span id="version-message" class="hint" role="status"></span>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <dialog id="selftest-dialog">
+      <h2>Self-test</h2>
+      <ul id="selftest-results" class="selftest-results"></ul>
+      <form method="dialog"><button>Close</button></form>
+    </dialog>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "flappy-kiro",
+  "version": "1.0.0",
+  "description": "Flappy Kiro: a retro endless scroller with a protected, seed-based gameplay core and an AI-replaceable frontend.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "serve": "python3 -m http.server 8080"
+  },
+  "engines": { "node": ">=20" }
+}
